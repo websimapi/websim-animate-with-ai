@@ -1,65 +1,48 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Animation Studio</title>
+    <title>Animate with AI</title>
     <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div id="app">
-        <div id="viewport-container">
-            <canvas id="viewport"></canvas>
-            <div id="loading" class="hidden">
-                <div class="spinner"></div>
-                <p>Processing...</p>
-            </div>
-        </div>
-        
-        <div id="control-panel">
-            <div class="panel-section">
-                <label class="file-upload-btn">
-                    <input type="file" id="model-upload" accept=".glb,.gltf" />
-                    Load Model
-                </label>
-            </div>
-
-            <div id="skeleton-info" class="panel-section hidden">
-                <h3>Skeleton Structure</h3>
-                <div id="bone-list"></div>
-            </div>
-
-            <div id="animation-controls" class="panel-section hidden">
-                <h3>Animate</h3>
-                <textarea 
-                    id="animation-prompt" 
-                    placeholder="Describe the animation... e.g., 'wave right hand', 'walk forward', 'jump'"
-                ></textarea>
-                <button id="animate-btn">Generate Animation</button>
-                
-                <div id="timeline-controls">
-                    <button id="play-btn" class="hidden">▶ Play</button>
-                    <button id="pause-btn" class="hidden">⏸ Pause</button>
-                    <button id="reset-btn" class="hidden">↺ Reset</button>
-                </div>
-            </div>
-
-            <div id="agent-status" class="panel-section hidden">
-                <h3>Agent Activity</h3>
-                <div id="agent-log"></div>
-            </div>
-        </div>
-    </div>
-    
     <script type="importmap">
     {
         "imports": {
-            "three": "https://esm.sh/three@0.160.0",
-            "three/addons/": "https://esm.sh/three@0.160.0/examples/jsm/"
+            "three": "https://esm.sh/three@0.165.0",
+            "three/addons/": "https://esm.sh/three@0.165.0/examples/jsm/"
         }
     }
     </script>
+</head>
+<body>
+    <div id="container">
+        <canvas id="viewer-canvas"></canvas>
+        <div id="ui-panel">
+            <div class="ui-header">
+                <h1>Animate with AI</h1>
+                <p>Load a GLB model and describe an animation.</p>
+            </div>
+            <div class="ui-group">
+                <label for="model-input">Load GLB Model</label>
+                <input type="file" id="model-input" accept=".glb, .gltf">
+            </div>
+            <div class="ui-group">
+                <label for="prompt-input">Animation Prompt</label>
+                <textarea id="prompt-input" rows="3" placeholder="e.g., 'Do a little wave with the right hand'"></textarea>
+            </div>
+            <button id="animate-button" disabled>Animate</button>
+            <div id="info-panel">
+                <h2>Model Skeleton</h2>
+                <div id="skeleton-info">
+                    <p>No model loaded.</p>
+                </div>
+            </div>
+            <div id="loader" class="hidden">
+                <div class="spinner"></div>
+                <p>AI is generating animation...</p>
+            </div>
+        </div>
+    </div>
     <script type="module" src="main.js"></script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4c6229722a6346bc8eb5cb0e5eae5d41","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
